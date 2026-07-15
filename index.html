@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE SIGNATURE STUDIO — Luxury Grooming</title>
+  <meta name="description" content="A premium barber & grooming studio. Book your appointment online.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="Frontend/style.css">
+</head>
+
+<body>
+
+  <!-- ================= NAV ================= -->
+  <nav id="nav">
+    <div class="logo"><b>✂</b>&nbsp;THE SIGNATURE <b>STUDIO</b></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a class="nav-link" href="#about" onclick="closeMenu()">About</a></li>
+      <li><a class="nav-link" href="#services" onclick="closeMenu()">Services</a></li>
+      <li><a class="nav-link" href="#gallery" onclick="closeMenu()">Gallery</a></li>
+      <li><a class="nav-link" href="#contact" onclick="closeMenu()">Contact</a></li>
+      <li><a class="nav-cta" href="#booking" onclick="closeMenu()">Book Now</a></li>
+    </ul>
+    <div class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+  <section id="hero">
+    <div class="hero-ring"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow" id="heroEyebrow">Est. 2020 — Private Grooming Studio</div>
+        <h1>Precision cuts.<br><em>Timeless</em> craft.</h1>
+        <p class="tag">A quiet, members-style barbershop for men who take their grooming as seriously as their
+          tailoring. One chair, one barber, full attention.</p>
+        <div class="hero-actions">
+          <a href="#booking" class="btn btn-gold">Book Appointment</a>
+          <a href="#gallery" class="btn btn-outline">Explore Gallery</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-social">
+      <div class="container hero-social-wrap">
+        <div class="hero-quick">
+          <a class="quick-btn" href="https://wa.me/10000000000" target="_blank" title="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18a7.93 7.93 0 0 1-4.05-1.11l-.29-.17-3 .79.8-2.92-.19-.3A7.95 7.95 0 1 1 12 20Zm4.4-5.9c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.17-.7-.62-1.18-1.4-1.32-1.63-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.43-.58 1.63-1.15.2-.56.2-1.04.14-1.15-.06-.1-.22-.16-.46-.28Z" />
+            </svg>
+          </a>
+          <a class="quick-btn" href="tel:+10000000000" title="Call">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.9 21 3 13.1 3 3c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z" />
+            </svg>
+          </a>
+          <a class="quick-btn" href="https://maps.google.com" target="_blank" title="Location">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" />
+            </svg>
+          </a>
+          <a class="quick-btn" href="https://instagram.com" target="_blank" title="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2.2c2.7 0 3 0 4 .05 1 .05 1.7.2 2.3.5.6.2 1.1.6 1.6 1.1.5.5.8 1 1.1 1.6.3.6.4 1.3.5 2.3.05 1 .05 1.3.05 4s0 3-.05 4c-.05 1-.2 1.7-.5 2.3-.2.6-.6 1.1-1.1 1.6-.5.5-1 .8-1.6 1.1-.6.3-1.3.4-2.3.5-1 .05-1.3.05-4 .05s-3 0-4-.05c-1-.05-1.7-.2-2.3-.5-.6-.2-1.1-.6-1.6-1.1-.5-.5-.8-1-1.1-1.6-.3-.6-.4-1.3-.5-2.3-.05-1-.05-1.3-.05-4s0-3 .05-4c.05-1 .2-1.7.5-2.3.2-.6.6-1.1 1.1-1.6.5-.5 1-.8 1.6-1.1.6-.3 1.3-.4 2.3-.5 1-.05 1.3-.05 4-.05ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Zm5.2-8.4a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z" />
+            </svg>
+          </a>
+        </div>
+        <div class="scroll-cue"><span>Scroll</span>
+          <div class="line"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-photo reveal">
+        <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=900&auto=format&fit=crop"
+          alt="Master barber portrait">
+        <div class="about-badge"><b id="aboutYears">6+</b><span>Years of Craft</span></div>
+      </div>
+      <div class="about-text reveal d1">
+        <div class="eyebrow">The Barber</div>
+        <h2 id="aboutName">Meet <span class="stroke">Goldy<svg viewBox="0 0 200 14">
+              <path d="M2 8c40-8 158-8 196 2" />
+            </svg></span></h2>
+        <p id="aboutIntro">Trained in London and Tokyo, Goldy has spent six years refining a single craft — the men's
+          haircut, done properly. No conveyor belt, no rush. Every appointment is a private, 45–60 minute session built
+          around your head shape, hair type, and the way you actually live.</p>
+        <p>Certified Master Barber (City & Guilds), specialist in skin fades, textured crops and classic straight-razor
+          beard work. Fluent in English, Hindi and Punjabi.</p>
+        <div class="about-facts">
+          <div class="about-fact"><b>4,800+</b><span>Clients groomed</span></div>
+          <div class="about-fact"><b>4.9 / 5</b><span>Average rating</span></div>
+          <div class="about-fact"><b>Mon–Sun</b><span>10 AM – 8 PM</span></div>
+          <div class="about-fact"><b>Sector 115</b><span>Sante Majra Studio</span></div>
+        </div>
+        <div class="chips">
+          <span class="chip">Skin Fades</span><span class="chip">Beard Sculpting</span>
+          <span class="chip">Hair Colour</span><span class="chip">Home Service</span><span class="chip">Kids Cuts</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES ================= -->
+  <section id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Menu</div>
+        <h2>Services &amp; <span class="stroke">Pricing<svg viewBox="0 0 200 14">
+              <path d="M2 8c40-8 158-8 196 2" />
+            </svg></span></h2>
+        <p>Every service is booked as a private, unhurried session. Prices in INR.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="services-grid" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <!-- ================= GALLERY ================= -->
+  <section id="gallery">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Portfolio</div>
+        <h2>Recent <span class="stroke">Work<svg viewBox="0 0 160 14">
+              <path d="M2 8c30-8 120-8 156 2" />
+            </svg></span></h2>
+        <p>A curated look at haircuts, beard work and full transformations from the chair.</p>
+      </div>
+      <div class="filters" id="galleryFilters"></div>
+      <div class="masonry" id="masonryGrid"></div>
+    </div>
+  </section>
+
+  <!-- ================= VIDEOS ================= -->
+  <section id="videos">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">In Motion</div>
+        <h2>Video <span class="stroke">Gallery<svg viewBox="0 0 190 14">
+              <path d="M2 8c36-8 148-8 186 2" />
+            </svg></span></h2>
+        <p>Behind-the-chair reels — the process, the transformation, the reactions.</p>
+      </div>
+      <div class="video-grid" id="videoGrid"></div>
+    </div>
+  </section>
+
+  <!-- ================= BEFORE / AFTER ================= -->
+  <section id="ba">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Proof</div>
+        <h2>Before &amp; <span class="stroke">After<svg viewBox="0 0 150 14">
+              <path d="M2 8c28-8 112-8 146 2" />
+            </svg></span></h2>
+        <p>Drag the slider to see the transformation.</p>
+      </div>
+      <div class="ba-wrap" id="baWrap"></div>
+    </div>
+  </section>
+
+  <!-- ================= REVIEWS ================= -->
+  <section id="reviews">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Testimonials</div>
+        <h2>Client <span class="stroke">Reviews<svg viewBox="0 0 180 14">
+              <path d="M2 8c34-8 140-8 176 2" />
+            </svg></span></h2>
+        <p>4.9 out of 5 across 300+ Google reviews.</p>
+      </div>
+      <div class="review-track" id="reviewGrid"></div>
+    </div>
+  </section>
+
+  <!-- ================= BOOKING ================= -->
+  <section id="booking">
+    <div class="container booking-grid">
+      <div class="booking-side reveal">
+        <div class="eyebrow">Reserve Your Chair</div>
+        <h2>Book an Appointment</h2>
+        <p>Fill in the form and your request goes straight to Goldy. You'll get a status update — pending, approved, or
+          rescheduled — before your visit.</p>
+        <div class="booking-info">
+          <div class="bi-row"><span class="ico">◈</span>
+            <div><b>Studio Address</b><span id="bookingAddress">Sector 115, Sante Majra</span></div>
+          </div>
+          <div class="bi-row"><span class="ico">◈</span>
+            <div><b>Hours</b><span id="bookingHours">Mon–Sun, 10:00 AM – 8:00 PM (Open all week)</span></div>
+          </div>
+          <div class="bi-row"><span class="ico">◈</span>
+            <div><b>Home Service</b><span>Available within 10 km — approved manually per booking</span></div>
+          </div>
+        </div>
+      </div>
+      <form class="form-card reveal d1" id="bookingForm">
+        <div class="form-row">
+          <div class="field"><label>Full Name</label><input required type="text" id="bName" placeholder="Your name">
+          </div>
+          <div class="field"><label>Phone</label><input required type="tel" id="bPhone" placeholder="+91 98xxxxxxx">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Email</label><input type="email" id="bEmail" placeholder="you@email.com"></div>
+          <div class="field"><label>Service</label>
+            <select id="bService"></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Date</label><input required type="date" id="bDate"></div>
+          <div class="field"><label>Time</label><input required type="time" id="bTime"></div>
+        </div>
+        <div class="field full" style="margin-bottom:18px;">
+          <label>Appointment Type</label>
+          <div class="seg">
+            <button type="button" class="active" data-type="Shop Visit" onclick="setApptType(this)">Shop Visit</button>
+            <button type="button" data-type="Home Service" onclick="setApptType(this)">Home Service</button>
+          </div>
+        </div>
+        <div class="home-fields" id="homeFields">
+          <div class="form-row">
+            <div class="field full"><label>Address</label><input type="text" id="bAddress" placeholder="Full address">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Landmark</label><input type="text" id="bLandmark" placeholder="Nearest landmark">
+            </div>
+            <div class="field"><label>Preferred Time Window</label><input type="text" id="bPrefTime"
+                placeholder="e.g. Evening after 6 PM"></div>
+          </div>
+        </div>
+        <div class="field full" style="margin-bottom:22px;">
+          <label>Additional Notes</label>
+          <textarea id="bNotes" placeholder="Anything Goldy should know before your visit"></textarea>
+        </div>
+        <div class="submit-row">
+          <button type="submit" class="btn btn-gold">Request Appointment</button>
+          <span class="submit-note">No payment required to request a booking.</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Reach Us</div>
+        <h2>Get in <span class="stroke">Touch<svg viewBox="0 0 150 14">
+              <path d="M2 8c28-8 112-8 146 2" />
+            </svg></span></h2>
+      </div>
+      <div class="contact-grid">
+        <a class="contact-card" href="tel:+10000000000">
+          <div class="ico">☎</div><b>Call</b><span>+91 98xxx xxxxx</span>
+        </a>
+        <a class="contact-card" href="https://wa.me/10000000000" target="_blank">
+          <div class="ico">✆</div><b>WhatsApp</b><span>Chat instantly</span>
+        </a>
+        <a class="contact-card" href="https://instagram.com" target="_blank">
+          <div class="ico">◎</div><b>Instagram</b><span>@Signature Studio</span>
+        </a>
+        <a class="contact-card" href="https://maps.google.com" target="_blank">
+          <div class="ico">◈</div><b>Studio</b><span id="contactAddress">Sector 115, Sante Majra</span>
+        </a>
+      </div>
+      <div class="hours-strip">
+        <div id="hoursStrip1"><b>Mon – Sun</b> 10:00 AM – 8:00 PM</div>
+        <div id="hoursStrip2"><b>Every Day</b> Open, No Weekly Off</div>
+        <div id="hoursStrip3"><b>Walk-ins</b> Welcome, Booking Preferred</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <div class="logo" style="margin-bottom:16px;"><b>✂</b>&nbsp;The Signature<b>STUDIO</b></div>
+          <p style="color:var(--muted);font-size:13.5px;max-width:280px;">A private grooming studio for men who want
+            their haircut done right — every time.</p>
+        </div>
+        <ul>
+          <h5>Quick Links</h5>
+          <li><a href="#about">About</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#booking">Book Now</a></li>
+        </ul>
+        <ul>
+          <h5>Services</h5>
+          <li><a href="#services">Haircut &amp; Fade</a></li>
+          <li><a href="#services">Beard Styling</a></li>
+          <li><a href="#services">Hair Colour</a></li>
+          <li><a href="#services">Home Service</a></li>
+        </ul>
+        <ul>
+          <h5>Social</h5>
+          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+          <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
+          <li><a href="https://tiktok.com" target="_blank">TikTok</a></li>
+        </ul>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 The Signature Studio. All rights reserved. · <a href="#">Privacy</a> · <a href="#">Terms</a></span>
+        <a class="staff-link" href="#" onclick="openAdmin(event)">Staff Login →</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- floating quick-contact widget -->
+  <div class="fab-wrap" id="fabWrap">
+    <div class="fab-menu" id="fabMenu">
+      <a class="fab-item" href="https://wa.me/10000000000" target="_blank">
+        <span class="fab-ico wa">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18a7.93 7.93 0 0 1-4.05-1.11l-.29-.17-3 .79.8-2.92-.19-.3A7.95 7.95 0 1 1 12 20Zm4.4-5.9c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.17-.7-.62-1.18-1.4-1.32-1.63-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.43-.58 1.63-1.15.2-.56.2-1.04.14-1.15-.06-.1-.22-.16-.46-.28Z" />
+          </svg>
+        </span>
+        <span class="fab-text"><b>WhatsApp</b><span>Chat with Goldy</span></span>
+      </a>
+      <a class="fab-item" href="https://instagram.com" target="_blank">
+        <span class="fab-ico ig">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2.2c2.7 0 3 0 4 .05 1 .05 1.7.2 2.3.5.6.2 1.1.6 1.6 1.1.5.5.8 1 1.1 1.6.3.6.4 1.3.5 2.3.05 1 .05 1.3.05 4s0 3-.05 4c-.05 1-.2 1.7-.5 2.3-.2.6-.6 1.1-1.1 1.6-.5.5-1 .8-1.6 1.1-.6.3-1.3.4-2.3.5-1 .05-1.3.05-4 .05s-3 0-4-.05c-1-.05-1.7-.2-2.3-.5-.6-.2-1.1-.6-1.6-1.1-.5-.5-.8-1-1.1-1.6-.3-.6-.4-1.3-.5-2.3-.05-1-.05-1.3-.05-4s0-3 .05-4c.05-1 .2-1.7.5-2.3.2-.6.6-1.1 1.1-1.6.5-.5 1-.8 1.6-1.1.6-.3 1.3-.4 2.3-.5 1-.05 1.3-.05 4-.05ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Zm5.2-8.4a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z" />
+          </svg>
+        </span>
+        <span class="fab-text"><b>Instagram</b><span>@The Signature Studio</span></span>
+      </a>
+    </div>
+    <button class="fab-main" id="fabMain" onclick="toggleFab()">
+      <span class="fab-ring"></span>
+      <span class="fab-icon-open">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z" />
+        </svg>
+      </span>
+      <span class="fab-icon-close">✕</span>
+    </button>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- lightbox modal -->
+  <div class="modal-bg" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+    <span class="modal-close" onclick="closeLightbox()">✕</span>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+  <!-- video modal -->
+  <div class="modal-bg" id="videoModal" onclick="if(event.target===this)closeVideoModal()">
+    <span class="modal-close" onclick="closeVideoModal()">✕</span>
+    <div class="modal-video-box">
+      <div class="ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7L8 5Z" />
+        </svg></div>
+      <h4 id="videoModalTitle">Video Title</h4>
+      <p id="videoModalDesc">This is a placeholder slot for real footage — the barber uploads the actual reel from the
+        Admin Dashboard → Manage Videos.</p>
+    </div>
+  </div>
+
+  <!-- =========================================================
+     ADMIN DASHBOARD ROOT
+========================================================== -->
+  <div id="admin-root">
+
+    <!-- LOGIN -->
+    <div class="admin-login" id="adminLogin">
+      <div class="login-card" id="loginCardStep1">
+        <div class="logo"><b>✂</b>&nbsp;STAFF PORTAL</div>
+        <p class="sub">THE GENTLEMAN'S CHAIR — ADMIN</p>
+        <form id="loginForm">
+          <div class="field"><label>Email</label><input required type="email" id="loginEmail"
+              placeholder="admin@barber.com"></div>
+          <div class="field"><label>Password</label><input required type="password" id="loginPass"
+              placeholder="••••••••"></div>
+          <button type="submit" class="btn btn-gold"
+            style="width:100%;justify-content:center;margin-top:8px;">Continue</button>
+        </form>
+        <div class="demo-hint">Staff credentials — <b>admin@barber.com</b> / <b>admin123</b><br>Use these to access the
+          dashboard.</div>
+        <a class="back-site" href="#" onclick="closeAdmin(event)">← Back to website</a>
+      </div>
+
+      <!-- OTP STEP -->
+      <div class="login-card hidden-panel" id="loginCardStep2">
+        <div class="otp-lock">🔒</div>
+        <div class="logo" style="justify-content:center;">Verify It's You</div>
+        <p class="sub">A 6-DIGIT CODE WAS SENT TO YOUR REGISTERED NUMBER</p>
+        <form id="otpForm">
+          <div class="otp-inputs" id="otpInputs">
+            <input maxlength="1" inputmode="numeric" class="otp-box" data-i="0">
+            <input maxlength="1" inputmode="numeric" class="otp-box" data-i="1">
+            <input maxlength="1" inputmode="numeric" class="otp-box" data-i="2">
+            <input maxlength="1" inputmode="numeric" class="otp-box" data-i="3">
+            <input maxlength="1" inputmode="numeric" class="otp-box" data-i="4">
+            <input maxlength="1" inputmode="numeric" class="otp-box" data-i="5">
+          </div>
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;margin-top:22px;">Verify
+            &amp; Enter Dashboard</button>
+        </form>
+        <div class="demo-hint" id="otpDemoHint">Demo mode — your code is <b id="otpDemoCode">------</b></div>
+        <a class="back-site" href="#" onclick="backToStep1(event)">← Back</a>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="admin-shell hidden-panel" id="adminShell">
+      <aside class="admin-sidebar">
+        <div class="logo"><b>✂</b>&nbsp;ADMIN</div>
+        <a class="side-link active" data-tab="dash" onclick="switchTab('dash',this)">◆ Dashboard</a>
+        <div class="side-section">Bookings</div>
+        <a class="side-link" data-tab="appts" onclick="switchTab('appts',this)">◆ Appointments</a>
+        <a class="side-link" data-tab="home" onclick="switchTab('home',this)">◆ Home Service Requests</a>
+        <div class="side-section">Content</div>
+        <a class="side-link" data-tab="gallery" onclick="switchTab('gallery',this)">◆ Manage Gallery</a>
+        <a class="side-link" data-tab="videos" onclick="switchTab('videos',this)">◆ Manage Videos</a>
+        <a class="side-link" data-tab="services" onclick="switchTab('services',this)">◆ Manage Services</a>
+        <a class="side-link" data-tab="reviews" onclick="switchTab('reviews',this)">◆ Manage Reviews</a>
+        <div class="side-section">System</div>
+        <a class="side-link" data-tab="settings" onclick="switchTab('settings',this)">◆ Website Settings</a>
+        <a class="side-link" onclick="closeAdmin(event)">◆ Logout</a>
+      </aside>
+
+      <main class="admin-main">
+        <!-- DASHBOARD TAB -->
+        <div class="admin-tab" id="tab-dash">
+          <div class="admin-topbar">
+            <div>
+              <h1>Dashboard Overview</h1>
+              <div class="sub">Welcome back, Goldy — here's today at a glance.</div>
+            </div>
+          </div>
+          <div class="stat-grid" id="statGrid"></div>
+          <div class="dashboard-grid">
+            <div class="admin-panel">
+              <div class="panel-head">
+                <h3>Recent Booking Requests</h3>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Customer</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="recentApptBody"></tbody>
+              </table>
+            </div>
+            <div class="admin-panel">
+              <div class="panel-head">
+                <h3>Activity Feed</h3>
+              </div>
+              <div class="activity-list" id="activityFeed"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- APPOINTMENTS TAB -->
+        <div class="admin-tab hidden-panel" id="tab-appts">
+          <div class="admin-topbar">
+            <div>
+              <h1>Appointments</h1>
+              <div class="sub">Accept, reject, reschedule or complete bookings.</div>
+            </div>
+          </div>
+          <div class="admin-panel">
+            <table>
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Contact</th>
+                  <th>Service</th>
+                  <th>Date / Time</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="apptBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- HOME SERVICE TAB -->
+        <div class="admin-tab hidden-panel" id="tab-home">
+          <div class="admin-topbar">
+            <div>
+              <h1>Home Service Requests</h1>
+              <div class="sub">Bookings requesting an at-home visit.</div>
+            </div>
+          </div>
+          <div class="admin-panel">
+            <table>
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Address</th>
+                  <th>Landmark</th>
+                  <th>Preferred Time</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="homeBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- GALLERY TAB -->
+        <div class="admin-tab hidden-panel" id="tab-gallery">
+          <div class="admin-topbar">
+            <div>
+              <h1>Manage Gallery</h1>
+              <div class="sub">Upload, categorise or remove portfolio images.</div>
+            </div>
+          </div>
+          <div class="admin-panel">
+            <div class="panel-head">
+              <div>
+                <h3>Gallery Library</h3>
+                <div class="subtle">Category-tagged cards with instant preview actions.</div>
+              </div>
+              <button type="button" class="btn btn-outline" onclick="document.getElementById('galleryUpload').click()">+
+                Upload Photo</button>
+            </div>
+            <input type="file" id="galleryUpload" accept="image/*" style="display:none"
+              onchange="uploadGalleryImage(event)">
+            <div class="card-grid" id="adminGalleryGrid"></div>
+            <div class="toggle-note">Remove any card instantly or add a fresh image from your device.</div>
+          </div>
+        </div>
+
+        <!-- VIDEOS TAB -->
+        <div class="admin-tab hidden-panel" id="tab-videos">
+          <div class="admin-topbar">
+            <div>
+              <h1>Manage Videos</h1>
+              <div class="sub">Reels, transformations and trending cuts.</div>
+            </div>
+          </div>
+          <div class="admin-panel">
+            <div class="panel-head">
+              <div>
+                <h3>Video Gallery</h3>
+                <div class="subtle">Attractive cards for each reel or highlight clip.</div>
+              </div>
+              <button type="button" class="btn btn-outline" onclick="document.getElementById('videoUpload').click()">+
+                Add Video</button>
+            </div>
+            <input type="file" id="videoUpload" accept="video/*,image/*" style="display:none"
+              onchange="uploadVideoThumb(event)">
+            <div class="card-grid" id="adminVideoGrid"></div>
+            <div class="toggle-note">Upload a thumbnail or clip from your device — the card updates immediately.</div>
+          </div>
+        </div>
+
+        <!-- SERVICES TAB -->
+        <div class="admin-tab hidden-panel" id="tab-services">
+          <div class="admin-topbar">
+            <div>
+              <h1>Manage Services</h1>
+              <div class="sub">Edit prices, duration and availability.</div>
+            </div>
+          </div>
+          <div class="admin-panel">
+            <div class="panel-head">
+              <div>
+                <h3>Service Cards</h3>
+                <div class="subtle">Switch between premium packages with quick price updates.</div>
+              </div>
+            </div>
+            <div class="card-grid" id="serviceCards"></div>
+          </div>
+        </div>
+
+        <!-- REVIEWS TAB -->
+        <div class="admin-tab hidden-panel" id="tab-reviews">
+          <div class="admin-topbar">
+            <div>
+              <h1>Manage Reviews</h1>
+              <div class="sub">Approve, feature or hide customer reviews.</div>
+            </div>
+          </div>
+          <div class="admin-panel">
+            <div class="panel-head">
+              <div>
+                <h3>Customer Feedback</h3>
+                <div class="subtle">Approve or hide feedback cards instantly.</div>
+              </div>
+            </div>
+            <div class="card-grid" id="reviewCards"></div>
+          </div>
+        </div>
+
+        <!-- SETTINGS TAB -->
+        <div class="admin-tab hidden-panel" id="tab-settings">
+          <div class="admin-topbar">
+            <div>
+              <h1>Website Settings</h1>
+              <div class="sub">Everything here edits the live customer site instantly — try it.</div>
+            </div>
+          </div>
+          <div class="settings-shell">
+            <div class="settings-nav">
+              <button type="button" class="settings-nav-btn active" data-section="business"
+                onclick="switchSettingsSection('business', this)">Business</button>
+              <button type="button" class="settings-nav-btn" data-section="branding"
+                onclick="switchSettingsSection('branding', this)">Branding</button>
+              <button type="button" class="settings-nav-btn" data-section="preferences"
+                onclick="switchSettingsSection('preferences', this)">Preferences</button>
+            </div>
+            <div class="settings-panels">
+              <div class="settings-panel active" id="settings-business">
+                <form class="admin-panel" id="settingsForm">
+                  <div class="panel-head">
+                    <h3>Business &amp; Barber Info</h3>
+                  </div>
+                  <div class="form-row">
+                    <div class="field"><label>Business Name</label><input type="text" id="setBusinessName"
+                        value="The Gentleman's Chair"></div>
+                    <div class="field"><label>Barber Name</label><input type="text" id="setBarberName" value="Goldy">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="field"><label>Established Year</label><input type="text" id="setEstYear" value="2020">
+                    </div>
+                    <div class="field"><label>Years of Experience</label><input type="text" id="setExpYears" value="6">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="field"><label>Contact Phone</label><input type="text" id="setPhone"
+                        value="+91 98xxx xxxxx">
+                    </div>
+                    <div class="field"><label>WhatsApp Number (with country code, no +)</label><input type="text"
+                        id="setWhatsapp" value="10000000000"></div>
+                  </div>
+                  <div class="form-row">
+                    <div class="field"><label>Working Hours</label><input type="text" id="setHours"
+                        value="Mon–Sun, 10:00 AM – 8:00 PM"></div>
+                    <div class="field"><label>Address</label><input type="text" id="setAddress"
+                        value="Sector 115, Sante Majra"></div>
+                  </div>
+
+                  <div class="panel-head" style="margin-top:8px;">
+                    <h3>Social Media Links</h3>
+                  </div>
+                  <div class="form-row">
+                    <div class="field"><label>Instagram URL</label><input type="text" id="setInstagram"
+                        value="https://instagram.com"></div>
+                    <div class="field"><label>Facebook URL</label><input type="text" id="setFacebook"
+                        value="https://facebook.com"></div>
+                  </div>
+                  <div class="form-row">
+                    <div class="field"><label>YouTube URL</label><input type="text" id="setYoutube"
+                        value="https://youtube.com"></div>
+                    <div class="field"><label>TikTok URL</label><input type="text" id="setTiktok"
+                        value="https://tiktok.com">
+                    </div>
+                  </div>
+
+                  <div class="submit-row" style="margin-bottom:6px;margin-top:20px;">
+                    <button type="submit" class="btn btn-gold">Save &amp; Publish to Site</button>
+                    <span class="submit-note" id="settingsSavedNote"></span>
+                  </div>
+                </form>
+              </div>
+
+              <div class="settings-panel" id="settings-branding">
+                <div class="admin-panel">
+                  <div class="panel-head">
+                    <h3>Hero Background Image</h3>
+                  </div>
+                  <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
+                    <div class="mini-img" style="width:160px;height:100px;"><img id="heroPreview"
+                        src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1800&auto=format&fit=crop">
+                    </div>
+                    <div>
+                      <input type="file" id="heroUpload" accept="image/*" style="display:none"
+                        onchange="uploadHeroImage(event)">
+                      <button type="button" class="btn btn-outline"
+                        onclick="document.getElementById('heroUpload').click()">Upload New Photo</button>
+                      <div class="toggle-note" style="border:none;padding:8px 0 0;">Uploads instantly to the live hero
+                        section
+                        — stored in this session only.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="admin-panel">
+                  <div class="panel-head">
+                    <h3>About Photo</h3>
+                  </div>
+                  <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
+                    <div class="mini-img" style="width:110px;height:110px;"><img id="aboutPreview"
+                        src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=900&auto=format&fit=crop">
+                    </div>
+                    <div>
+                      <input type="file" id="aboutUpload" accept="image/*" style="display:none"
+                        onchange="uploadAboutImage(event)">
+                      <button type="button" class="btn btn-outline"
+                        onclick="document.getElementById('aboutUpload').click()">Upload New Photo</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="settings-panel" id="settings-preferences">
+                <div class="admin-panel">
+                  <div class="panel-head">
+                    <h3>Site Behaviour</h3>
+                  </div>
+                  <label class="switch-row">
+                    <input type="checkbox" id="setShowFab" checked>
+                    <span>Show floating WhatsApp &amp; Instagram popup on the site</span>
+                  </label>
+                  <label class="switch-row" style="margin-top:14px;">
+                    <input type="checkbox" id="setRequireOtp" checked>
+                    <span>Require OTP verification for staff login</span>
+                  </label>
+                  <div class="toggle-note">These preferences update the live experience immediately.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="Frontend/script.js" defer></script>
+</body>
+
+</html>
