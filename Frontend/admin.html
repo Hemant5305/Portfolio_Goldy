@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard Demo — The Signature Studio</title>
+  <meta name="description" content="Demo of the staff/admin dashboard for The Signature Studio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body class="admin-demo-body">
+
+  <!-- =========================================================
+       ADMIN DASHBOARD ROOT (shown directly for this demo)
+  ========================================================== -->
+  <div id="admin-root" class="show">
+
+    <!-- LOGIN -->
+    <div class="admin-login" id="adminLogin">
+      <div class="login-card" id="loginCardStep1">
+        <div class="logo"><b>✂</b>&nbsp;STAFF PORTAL</div>
+        <p class="sub">THE SIGNATURE STUDIO — ADMIN</p>
+        <form id="loginForm">
+          <div class="field"><label>Email</label><input required type="email" id="loginEmail"
+              placeholder="admin@barber.com"></div>
+          <div class="field"><label>Password</label><input required type="password" id="loginPass"
+              placeholder="••••••••"></div>
+          <button type="submit" class="btn btn-gold"
+            style="width:100%;justify-content:center;margin-top:8px;">Continue</button>
+        </form>
+        <div class="demo-hint">Demo credentials — <b>admin@barber.com</b> / <b>admin123</b> (any value works in this
+          demo)
+        </div>
+      </div>
+
+      <!-- OTP STEP -->
+      <div class="login-card hidden-panel" id="loginCardStep2">
+        <div class="otp-lock">🔒</div>
+        <div class="logo" style="justify-content:center;">Verify It's You</div>
+        <p class="sub">A 6-DIGIT CODE WAS SENT TO YOUR REGISTERED NUMBER</p>
+        <form id="otpForm">
+          <div class="otp-inputs" id="otpInputs">
+            <input maxlength="1" inputmode="numeric" class="otp-box" data-i="0">
+            <input maxlength="1" inputmode="numeric" class="otp-box" data-i="1">
+            <input maxlength="1" inputmode="numeric" class="otp-box" data-i="2">
+            <input maxlength="1" inputmode="numeric" class="otp-box" data-i="3">
+            <input maxlength="1" inputmode="numeric" class="otp-box" data-i="4">
+            <input maxlength="1" inputmode="numeric" class="otp-box" data-i="5">
+          </div>
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;margin-top:22px;">Verify
+            &amp; Enter Dashboard</button>
+        </form>
+        <div class="demo-hint" id="otpDemoHint">Demo mode — your code is <b id="otpDemoCode">------</b></div>
+        <a class="back-site" href="#" onclick="backToStep1(event)">← Back</a>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="admin-shell hidden-panel" id="adminShell">
+      <aside class="admin-sidebar">
+        <div class="logo"><b>✂</b>&nbsp;ADMIN</div>
+        <a class="side-link active" data-tab="dash" onclick="switchTab('dash',this)">◆ Dashboard</a>
+        <div class="side-section">Bookings</div>
+        <a class="side-link" data-tab="appts" onclick="switchTab('appts',this)">◆ Appointments</a>
+        <a class="side-link" data-tab="home" onclick="switchTab('home',this)">◆ Home Service Requests</a>
+        <div class="side-section">Content</div>
+        <a class="side-link" data-tab="gallery" onclick="switchTab('gallery',this)">◆ Manage Gallery</a>
+        <a class="side-link" data-tab="videos" onclick="switchTab('videos',this)">◆ Manage Videos</a>
+        <a class="side-link" data-tab="services" onclick="switchTab('services',this)">◆ Manage Services</a>
+        <a class="side-link" data-tab="reviews" onclick="switchTab('reviews',this)">◆ Manage Reviews</a>
+        <div class="side-section">System</div>
+        <a class="side-link" data-tab="settings" onclick="switchTab('settings',this)">◆ Website Settings</a>
+        <a class="side-link" onclick="logoutDemo(event)">◆ Logout</a>
+      </aside>
+
+      <main class="admin-main">
+        <!-- DASHBOARD TAB -->
+        <div class="admin-tab show" id="tab-dash">
+          <div class="admin-topbar">
+            <div>
+              <h1>Dashboard Overview</h1>
+              <div class="sub">Welcome back, Goldy — here's today at a glance.</div>
+            </div>
+          </div>
+
+          <div class="stat-grid" id="statGrid"></div>
+
+          <div class="dashboard-grid">
+            <div class="admin-panel">
+              <div class="panel-head">
+                <h3>Recent Booking Requests</h3>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Customer</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="recentApptBody"></tbody>
+              </table>
+            </div>
+            <div class="admin-panel">
+              <div class="panel-head">
+                <h3>Activity Feed</h3>
+              </div>
+              <div class="activity-list" id="activityFeed"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- APPOINTMENTS TAB -->
+        <div class="admin-tab hidden-panel" id="tab-appts">
+          <div class="admin-topbar">
+            <div>
+              <h1>Appointments</h1>
+              <div class="sub">Accept, reject, reschedule or complete bookings.</div>
+            </div>
+          </div>
+          <div class="admin-panel">
+            <table>
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Contact</th>
+                  <th>Service</th>
+                  <th>Date / Time</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="apptBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- HOME SERVICE TAB -->
+        <div class="admin-tab hidden-panel" id="tab-home">
+          <div class="admin-topbar">
+            <div>
+              <h1>Home Service Requests</h1>
+              <div class="sub">Bookings requesting an at-home visit.</div>
+            </div>
+          </div>
+          <div class="admin-panel">
+            <table>
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Address</th>
+                  <th>Landmark</th>
+                  <th>Preferred Time</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="homeBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- GALLERY TAB -->
+        <div class="admin-tab hidden-panel" id="tab-gallery">
+          <div class="admin-topbar">
+            <div>
+              <h1>Manage Gallery</h1>
+              <div class="sub">Upload, categorise or remove portfolio images.</div>
+            </div>
+          </div>
+          <div class="admin-panel">
+            <div class="panel-head">
+              <div>
+                <h3>Gallery Library</h3>
+                <div class="subtle">Category-tagged cards with instant preview actions.</div>
+              </div>
+              <button type="button" class="btn btn-outline"
+                onclick="document.getElementById('galleryUpload').click()">+ Upload Photo</button>
+            </div>
+            <input type="file" id="galleryUpload" accept="image/*" style="display:none"
+              onchange="uploadGalleryImage(event)">
+            <div class="admin-grid-cards" id="adminGalleryGrid"></div>
+            <div class="toggle-note">Remove any card instantly or add a fresh image from your device.</div>
+          </div>
+        </div>
+
+        <!-- VIDEOS TAB -->
+        <div class="admin-tab hidden-panel" id="tab-videos">
+          <div class="admin-topbar">
+            <div>
+              <h1>Manage Videos</h1>
+              <div class="sub">Reels, transformations and trending cuts.</div>
+            </div>
+          </div>
+          <div class="admin-panel">
+            <div class="panel-head">
+              <div>
+                <h3>Video Gallery</h3>
+                <div class="subtle">Attractive cards for each reel or highlight clip.</div>
+              </div>
+              <button type="button" class="btn btn-outline"
+                onclick="document.getElementById('videoUpload').click()">+ Add Video</button>
+            </div>
+            <input type="file" id="videoUpload" accept="video/*,image/*" style="display:none"
+              onchange="uploadVideoThumb(event)">
+            <div class="admin-grid-cards" id="adminVideoGrid"></div>
+            <div class="toggle-note">Upload a thumbnail or clip from your device — the card updates immediately.
+            </div>
+          </div>
+        </div>
+
+        <!-- SERVICES TAB -->
+        <div class="admin-tab hidden-panel" id="tab-services">
+          <div class="admin-topbar">
+            <div>
+              <h1>Manage Services</h1>
+              <div class="sub">Edit prices, duration and availability.</div>
+            </div>
+          </div>
+          <div class="admin-panel">
+            <div class="panel-head">
+              <div>
+                <h3>Service List</h3>
+                <div class="subtle">Update prices inline — changes publish to the live menu.</div>
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Service</th>
+                  <th>Price (₹)</th>
+                  <th>Duration</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="serviceBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- REVIEWS TAB -->
+        <div class="admin-tab hidden-panel" id="tab-reviews">
+          <div class="admin-topbar">
+            <div>
+              <h1>Manage Reviews</h1>
+              <div class="sub">Approve, feature or hide customer reviews.</div>
+            </div>
+          </div>
+          <div class="admin-panel">
+            <table>
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Rating</th>
+                  <th>Review</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="reviewBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SETTINGS TAB -->
+        <div class="admin-tab hidden-panel" id="tab-settings">
+          <div class="admin-topbar">
+            <div>
+              <h1>Website Settings</h1>
+              <div class="sub">In the full site, this publishes straight to the live customer-facing page.</div>
+            </div>
+          </div>
+          <div class="settings-shell">
+            <div class="settings-nav">
+              <button type="button" class="settings-nav-btn active" data-section="business"
+                onclick="switchSettingsSection('business', this)">Business</button>
+              <button type="button" class="settings-nav-btn" data-section="branding"
+                onclick="switchSettingsSection('branding', this)">Branding</button>
+              <button type="button" class="settings-nav-btn" data-section="preferences"
+                onclick="switchSettingsSection('preferences', this)">Preferences</button>
+            </div>
+            <div class="settings-panels">
+              <div class="settings-panel active" id="settings-business">
+                <form class="admin-panel" id="settingsForm">
+                  <div class="panel-head">
+                    <h3>Business &amp; Barber Info</h3>
+                  </div>
+                  <div class="form-row">
+                    <div class="field"><label>Business Name</label><input type="text" id="setBusinessName"
+                        value="The Signature Studio"></div>
+                    <div class="field"><label>Barber Name</label><input type="text" id="setBarberName"
+                        value="Goldy"></div>
+                  </div>
+                  <div class="form-row">
+                    <div class="field"><label>Established Year</label><input type="text" id="setEstYear"
+                        value="2020"></div>
+                    <div class="field"><label>Years of Experience</label><input type="text" id="setExpYears"
+                        value="6"></div>
+                  </div>
+                  <div class="form-row">
+                    <div class="field"><label>Currently Working At</label><input type="text" id="setWorkplace"
+                        value="The Signature Studio"></div>
+                    <div class="field"><label>Displayed Contact Number</label><input type="text"
+                        id="setContactDisplay" value="+91 98xxx xxxxx"></div>
+                  </div>
+                  <div class="form-row">
+                    <div class="field"><label>Working Hours</label><input type="text" id="setHours"
+                        value="Mon–Sun, 10:00 AM – 8:00 PM"></div>
+                    <div class="field"><label>Address</label><input type="text" id="setAddress"
+                        value="Sector 115, Sante Majra"></div>
+                  </div>
+                  <div class="submit-row" style="margin-bottom:6px;margin-top:20px;">
+                    <button type="submit" class="btn btn-gold">Save &amp; Publish to Site</button>
+                    <span class="submit-note" id="settingsSavedNote"></span>
+                  </div>
+                </form>
+              </div>
+
+              <div class="settings-panel" id="settings-branding">
+                <div class="admin-panel">
+                  <div class="panel-head">
+                    <h3>Hero Background Image</h3>
+                  </div>
+                  <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
+                    <div class="mini-img" style="width:160px;height:100px;"><img id="heroPreview"
+                        src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1800&auto=format&fit=crop">
+                    </div>
+                    <div>
+                      <input type="file" id="heroUpload" accept="image/*" style="display:none"
+                        onchange="uploadHeroImage(event)">
+                      <button type="button" class="btn btn-outline"
+                        onclick="document.getElementById('heroUpload').click()">Upload New Photo</button>
+                      <div class="toggle-note" style="border:none;padding:8px 0 0;">Uploads instantly to the live
+                        hero section — stored in this session only.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="admin-panel">
+                  <div class="panel-head">
+                    <h3>About Photo</h3>
+                  </div>
+                  <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
+                    <div class="mini-img" style="width:110px;height:110px;"><img id="aboutPreview"
+                        src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=900&auto=format&fit=crop">
+                    </div>
+                    <div>
+                      <input type="file" id="aboutUpload" accept="image/*" style="display:none"
+                        onchange="uploadAboutImage(event)">
+                      <button type="button" class="btn btn-outline"
+                        onclick="document.getElementById('aboutUpload').click()">Upload New Photo</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="settings-panel" id="settings-preferences">
+                <div class="admin-panel">
+                  <div class="panel-head">
+                    <h3>Site Behaviour</h3>
+                  </div>
+                  <label class="switch-row">
+                    <input type="checkbox" id="setShowFab" checked>
+                    <span>Show floating WhatsApp &amp; Instagram popup on the site</span>
+                  </label>
+                  <label class="switch-row" style="margin-top:14px;">
+                    <input type="checkbox" id="setRequireOtp" checked>
+                    <span>Require OTP verification for staff login</span>
+                  </label>
+                  <div class="toggle-note">These preferences update the live experience immediately.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script src="admin.js" defer></script>
+</body>
+
+</html>

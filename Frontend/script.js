@@ -433,6 +433,8 @@ document.getElementById('settingsForm').addEventListener('submit', function (e) 
     const expYears = v('setExpYears');
     const phone = v('setPhone');
     const whatsapp = v('setWhatsapp');
+    const workplace = v('setWorkplace');
+    const contactDisplay = v('setContactDisplay');
     const hours = v('setHours');
     const address = v('setAddress');
 
@@ -447,8 +449,12 @@ document.getElementById('settingsForm').addEventListener('submit', function (e) 
     // About section
     document.getElementById('aboutYears').textContent = expYears + '+';
     document.getElementById('aboutName').innerHTML = `Meet <span class="stroke">${barberName}<svg viewBox="0 0 200 14"><path d="M2 8c40-8 158-8 196 2"/></svg></span>`;
-    document.getElementById('aboutIntro').textContent =
+   document.getElementById('aboutIntro').textContent =
         `Trained in London and Tokyo, ${barberName} has spent ${expYears} years refining a single craft — the men's haircut, done properly. No conveyor belt, no rush. Every appointment is a private, 45–60 minute session built around your head shape, hair type, and the way you actually live.`;
+    document.getElementById('aboutWorkplace').textContent = workplace;
+    document.getElementById('aboutExpMeta').textContent = expYears + '+ Years';
+    document.getElementById('aboutContactMeta').textContent = contactDisplay;
+    document.getElementById('aboutContactMeta').href = 'tel:+' + contactDisplay.replace(/[^0-9]/g, '');
 
     // Address + hours everywhere
     document.getElementById('bookingAddress').textContent = address;
