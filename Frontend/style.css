@@ -540,9 +540,40 @@ section {
     position: relative;
 }
 
-.about-photo img {
+.about-photo-frame {
     border-radius: 2px;
+    border: 1px solid var(--line);
+    transform: scale(1);
+    transform-origin: 90% 10%;
+    transition: transform .5s cubic-bezier(.16, .8, .24, 1), border-color .3s ease;
+    position: relative;
+}
+
+.about-photo-frame img {
+    display: block;
+    width: 100%;
     filter: grayscale(.15) contrast(1.05);
+    transition: filter .6s ease;
+}
+
+.about-photo-frame:hover {
+    transform: scale(1.08);
+    border-color: var(--gold);
+    z-index: 5;
+    animation: lightningGlow 1.3s ease-in-out infinite;
+}
+
+.about-photo-frame:hover img {
+    filter: grayscale(0) contrast(1.05);
+}
+
+@keyframes lightningGlow {
+    0%, 100% {
+        box-shadow: 0 0 0 1px var(--gold), 0 0 20px 2px rgba(200, 162, 77, .35), 0 0 46px 10px rgba(200, 162, 77, .15);
+    }
+    50% {
+        box-shadow: 0 0 0 1.5px var(--gold-bright), 0 0 32px 6px rgba(240, 210, 138, .6), 0 0 74px 16px rgba(200, 162, 77, .28);
+    }
 }
 
 .about-badge {
@@ -553,6 +584,12 @@ section {
     color: #0a0a0b;
     padding: 22px 26px;
     max-width: 200px;
+    z-index: 20;
+    transition: transform .5s cubic-bezier(.16, .8, .24, 1);
+}
+
+.about-photo:hover .about-badge {
+    transform: translateX(-10px);
 }
 
 .about-badge b {
@@ -579,6 +616,40 @@ section {
     color: var(--muted);
     font-size: 16px;
     margin-bottom: 18px;
+}
+
+.about-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 26px;
+    margin: 4px 0 22px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+}
+
+.about-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.about-meta-item b {
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    font-weight: 700;
+}
+
+.about-meta-item span,
+.about-meta-item a {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--gold-bright);
+}
+
+.about-meta-item a:hover {
+    color: var(--gold);
 }
 
 .about-facts {
