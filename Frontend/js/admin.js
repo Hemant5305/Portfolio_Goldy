@@ -1,60 +1,127 @@
 /* =========================================================
-   DEMO STATE
+   MOBILE SIDEBAR TOGGLE
+   Must be defined first — called after shell is shown
+========================================================= */
+function initMobileNav() {
+    const sidebar = document.querySelector('.admin-sidebar');
+    if (!sidebar || sidebar.dataset.mobileInit) return;
+    sidebar.dataset.mobileInit = '1';
+
+    const logo = sidebar.querySelector('.logo');
+    if (!logo) return;
+
+    // Build logo-row wrapper
+    const row = document.createElement('div');
+    row.className = 'sidebar-logo-row';
+    sidebar.insertBefore(row, logo);
+    row.appendChild(logo);
+
+    // Build toggle button
+    const btn = document.createElement('button');
+    btn.className = 'sidebar-toggle';
+    btn.setAttribute('aria-label', 'Toggle navigation');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = '☰ Menu';
+    row.appendChild(btn);
+
+    function closeNav() {
+        sidebar.classList.remove('nav-open');
+        btn.textContent = '☰ Menu';
+        btn.setAttribute('aria-expanded', 'false');
+    }
+
+    btn.addEventListener('click', function () {
+        const isOpen = sidebar.classList.toggle('nav-open');
+        btn.textContent = isOpen ? '✕ Close' : '☰ Menu';
+        btn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close when a nav link is tapped on mobile
+    sidebar.querySelectorAll('.side-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 860) closeNav();
+        });
+    });
+
+    // Close when tapping anywhere outside the sidebar
+    document.addEventListener('click', function (e) {
+        if (window.innerWidth <= 860 &&
+            sidebar.classList.contains('nav-open') &&
+            !sidebar.contains(e.target)) {
+            closeNav();
+        }
+    });
+}
+
+/* =========================================================
+   SHARED STATE
 ========================================================= */
 const state = {
     services: [
-        { id: 1, name: 'Signature Haircut', desc: 'Precision scissor & clipper cut, tailored to face shape.', price: 600, dur: '45 min', icon: '✂' },
-        { id: 2, name: 'Skin Fade', desc: 'Razor-sharp bald fade with seamless blending.', price: 750, dur: '50 min', icon: '◐' },
-        { id: 3, name: 'Beard Sculpting', desc: 'Straight-razor shape-up with hot towel finish.', price: 450, dur: '30 min', icon: '⌇' },
-        { id: 4, name: 'Kids Haircut', desc: 'Patient, gentle cuts for the younger gentlemen.', price: 400, dur: '30 min', icon: '★' },
-        { id: 5, name: 'Hair Wash & Style', desc: 'Deep cleanse, conditioning and blow-dry styling.', price: 300, dur: '20 min', icon: '≈' },
-        { id: 6, name: 'Hair Colour', desc: 'Grey blending or full colour with premium ammonia-free dye.', price: 1200, dur: '70 min', icon: '◆' },
-        { id: 7, name: 'Hair Spa', desc: 'Deep nourishing spa treatment for scalp & strands.', price: 900, dur: '50 min', icon: '❋' },
-        { id: 8, name: 'Head Massage', desc: 'Traditional oil head massage to relieve tension.', price: 350, dur: '25 min', icon: '✦' },
-        { id: 9, name: 'Premium Grooming', desc: 'Full package — cut, beard, wash, massage & styling.', price: 1800, dur: '110 min', icon: '♛' },
+        { id: 1, name: 'Signature Haircut',  desc: 'Precision scissor & clipper cut, tailored to face shape.',            price: 600,  dur: '45 min',  icon: '✂' },
+        { id: 2, name: 'Skin Fade',           desc: 'Razor-sharp bald fade with seamless blending.',                       price: 750,  dur: '50 min',  icon: '◐' },
+        { id: 3, name: 'Beard Sculpting',     desc: 'Straight-razor shape-up with hot towel finish.',                      price: 450,  dur: '30 min',  icon: '⌇' },
+        { id: 4, name: 'Kids Haircut',        desc: 'Patient, gentle cuts for the younger gentlemen.',                     price: 400,  dur: '30 min',  icon: '★' },
+        { id: 5, name: 'Hair Wash & Style',   desc: 'Deep cleanse, conditioning and blow-dry styling.',                    price: 300,  dur: '20 min',  icon: '≈' },
+        { id: 6, name: 'Hair Colour',         desc: 'Grey blending or full colour with premium ammonia-free dye.',         price: 1200, dur: '70 min',  icon: '◆' },
+        { id: 7, name: 'Hair Spa',            desc: 'Deep nourishing spa treatment for scalp & strands.',                  price: 900,  dur: '50 min',  icon: '❋' },
+        { id: 8, name: 'Head Massage',        desc: 'Traditional oil head massage to relieve tension.',                    price: 350,  dur: '25 min',  icon: '✦' },
+        { id: 9, name: 'Premium Grooming',    desc: 'Full package — cut, beard, wash, massage & styling.',                 price: 1800, dur: '110 min', icon: '♛' },
     ],
     gallery: [
-        { img: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=700&auto=format&fit=crop', cat: 'Haircuts', title: 'Textured Crop' },
-        { img: 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=700&auto=format&fit=crop', cat: 'Beards', title: 'Full Beard Shape' },
-        { img: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=700&auto=format&fit=crop', cat: 'Trending', title: 'Modern Quiff' },
-        { img: 'https://images.unsplash.com/photo-1621607512214-68297480165e?q=80&w=700&auto=format&fit=crop', cat: 'Transformation', title: 'Full Makeover' },
-        { img: 'https://images.unsplash.com/photo-1567894340315-735d7c361db0?q=80&w=700&auto=format&fit=crop', cat: 'Premium', title: 'Executive Style' },
-        { img: 'https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?q=80&w=700&auto=format&fit=crop', cat: 'Haircuts', title: 'Skin Fade' },
+        { img: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=700&auto=format&fit=crop', cat: 'Haircuts',       title: 'Textured Crop'    },
+        { img: 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=700&auto=format&fit=crop', cat: 'Beards',         title: 'Full Beard Shape' },
+        { img: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=700&auto=format&fit=crop', cat: 'Trending',       title: 'Modern Quiff'     },
+        { img: 'https://images.unsplash.com/photo-1621607512214-68297480165e?q=80&w=700&auto=format&fit=crop', cat: 'Transformation', title: 'Full Makeover'    },
+        { img: 'https://images.unsplash.com/photo-1567894340315-735d7c361db0?q=80&w=700&auto=format&fit=crop', cat: 'Premium',        title: 'Executive Style'  },
+        { img: 'https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?q=80&w=700&auto=format&fit=crop', cat: 'Haircuts',       title: 'Skin Fade'        },
     ],
     videos: [
-        { title: 'Skin Fade Process', cat: 'Process', thumb: 'https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?q=80&w=500&auto=format&fit=crop' },
-        { title: 'Beard Transformation', cat: 'Transformation', thumb: 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=500&auto=format&fit=crop' },
-        { title: 'Trending Textured Crop', cat: 'Trending', thumb: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=500&auto=format&fit=crop' },
-        { title: 'Customer Reaction', cat: 'Reactions', thumb: 'https://images.unsplash.com/photo-1621607512214-68297480165e?q=80&w=500&auto=format&fit=crop' },
+        { title: 'Skin Fade Process',      cat: 'Process',        thumb: 'https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?q=80&w=500&auto=format&fit=crop' },
+        { title: 'Beard Transformation',   cat: 'Transformation', thumb: 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=500&auto=format&fit=crop' },
+        { title: 'Trending Textured Crop', cat: 'Trending',       thumb: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=500&auto=format&fit=crop' },
+        { title: 'Customer Reaction',      cat: 'Reactions',      thumb: 'https://images.unsplash.com/photo-1621607512214-68297480165e?q=80&w=500&auto=format&fit=crop' },
     ],
     reviews: [
-        { name: 'Arjun Mehta', date: '2 weeks ago', rating: 5, text: 'Best fade I have ever had, hands down. Goldy actually listens before he picks up the clippers.', status: 'Approved' },
-        { name: 'Rohan Kapoor', date: '1 month ago', rating: 5, text: 'The home service option saved me before a wedding — punctual and immaculate work.', status: 'Approved' },
-        { name: 'Vikram Singh', date: '1 month ago', rating: 4, text: 'Booked through the site in under a minute. Studio feels premium, not like a typical salon.', status: 'Pending' },
+        { name: 'Arjun Mehta',  date: '2 weeks ago', rating: 5, text: 'Best fade I have ever had, hands down. Goldy actually listens before he picks up the clippers.',     status: 'Approved' },
+        { name: 'Rohan Kapoor', date: '1 month ago', rating: 5, text: 'The home service option saved me before a wedding — punctual and immaculate work.',                   status: 'Approved' },
+        { name: 'Vikram Singh', date: '1 month ago', rating: 4, text: 'Booked through the site in under a minute. Studio feels premium, not like a typical salon.',          status: 'Pending'  },
     ],
     bookings: [
-        { id: 'BK-1041', name: 'Arjun Mehta', phone: '+91 98111 22334', email: 'arjun@example.com', service: 'Skin Fade', date: '2026-07-18', time: '17:30', type: 'Shop Visit', status: 'Pending' },
-        { id: 'BK-1040', name: 'Rohan Kapoor', phone: '+91 98222 33445', email: 'rohan@example.com', service: 'Premium Grooming', date: '2026-07-17', time: '11:00', type: 'Home Service', address: 'H.No 214, Sector 71, Mohali', landmark: 'Near City Park', prefTime: 'Evening after 6 PM', status: 'Approved' },
-        { id: 'BK-1039', name: 'Karan Bhatia', phone: '+91 98333 44556', email: 'karan@example.com', service: 'Beard Sculpting', date: '2026-07-15', time: '14:00', type: 'Shop Visit', status: 'Completed' },
-        { id: 'BK-1038', name: 'Vikram Singh', phone: '+91 98444 55667', email: 'vikram@example.com', service: 'Hair Colour', date: '2026-07-14', time: '10:30', type: 'Shop Visit', status: 'Rejected' },
+        { id: 'BK-1041', name: 'Arjun Mehta',  phone: '+91 98111 22334', email: 'arjun@example.com',  service: 'Skin Fade',        date: '2026-07-18', time: '17:30', type: 'Shop Visit',   status: 'Pending'   },
+        { id: 'BK-1040', name: 'Rohan Kapoor', phone: '+91 98222 33445', email: 'rohan@example.com',  service: 'Premium Grooming', date: '2026-07-17', time: '11:00', type: 'Home Service', address: 'H.No 214, Sector 71, Mohali', landmark: 'Near City Park', prefTime: 'Evening after 6 PM', status: 'Approved'  },
+        { id: 'BK-1039', name: 'Karan Bhatia', phone: '+91 98333 44556', email: 'karan@example.com',  service: 'Beard Sculpting',  date: '2026-07-15', time: '14:00', type: 'Shop Visit',   status: 'Completed' },
+        { id: 'BK-1038', name: 'Vikram Singh', phone: '+91 98444 55667', email: 'vikram@example.com', service: 'Hair Colour',      date: '2026-07-14', time: '10:30', type: 'Shop Visit',   status: 'Rejected'  },
     ]
 };
 
 /* =========================================================
-   INIT — enforce correct state on page load
-   Show ONLY the login screen; hide the dashboard completely
+   BOOT — always start on login screen
 ========================================================= */
 function boot() {
-    // Always start on the login screen — never show dashboard without auth
     document.getElementById('adminLogin').style.display = 'flex';
     document.getElementById('adminShell').style.display = 'none';
-
-    // Make sure step 1 (email/pass) is visible, step 2 (OTP) is hidden
     document.getElementById('loginCardStep1').style.display = 'block';
     document.getElementById('loginCardStep2').style.display = 'none';
-
-    // Clear any leftover form values
     document.getElementById('loginForm').reset();
+}
+
+/* =========================================================
+   SHOW DASHBOARD — single place to reveal the shell
+========================================================= */
+function showDashboard() {
+    document.getElementById('adminLogin').style.display = 'none';
+
+    const shell = document.getElementById('adminShell');
+    // On mobile the grid causes a horizontal overflow — use block instead
+    shell.style.display = window.innerWidth <= 860 ? 'block' : 'grid';
+    shell.style.display = 'grid'; // CSS handles column count via media query
+
+    renderAdminData();
+    switchTab('dash', document.querySelector('.side-link[data-tab="dash"]'));
+
+    // Init mobile nav AFTER shell is visible so layout is measurable
+    initMobileNav();
 }
 
 /* =========================================================
@@ -64,18 +131,17 @@ function resetLoginFlow() {
     document.getElementById('loginCardStep1').style.display = 'block';
     document.getElementById('loginCardStep2').style.display = 'none';
     document.getElementById('loginForm').reset();
-    try { document.getElementById('otpForm').reset(); } catch(e) {}
+    try { document.getElementById('otpForm').reset(); } catch (e) {}
     document.querySelectorAll('.otp-box').forEach(b => {
         b.value = '';
-        b.classList.remove('filled');
+        b.classList.remove('filled', 'shake');
     });
 }
 
 let currentOtp = '';
 
-document.getElementById('loginForm').addEventListener('submit', function(e) {
+document.getElementById('loginForm').addEventListener('submit', function (e) {
     e.preventDefault();
-    // Generate 6-digit OTP (in production: sent via SMS/WhatsApp to owner's verified number)
     currentOtp = String(Math.floor(100000 + Math.random() * 900000));
     document.getElementById('otpDemoCode').textContent = currentOtp;
 
@@ -95,21 +161,20 @@ function backToStep1(e) {
     resetLoginFlow();
 }
 
-// OTP box: auto-advance on input
-document.getElementById('otpInputs').addEventListener('input', function(e) {
+/* OTP — auto-advance on digit input */
+document.getElementById('otpInputs').addEventListener('input', function (e) {
     const el = e.target;
     if (!el.classList.contains('otp-box')) return;
     el.value = el.value.replace(/[^0-9]/g, '');
-    if (el.value) el.classList.add('filled');
-    else el.classList.remove('filled');
+    el.classList.toggle('filled', !!el.value);
     const i = parseInt(el.dataset.i);
     if (el.value && i < 5) {
         document.querySelector(`.otp-box[data-i="${i + 1}"]`).focus();
     }
 });
 
-// OTP box: backspace goes to previous
-document.getElementById('otpInputs').addEventListener('keydown', function(e) {
+/* OTP — backspace goes to previous box */
+document.getElementById('otpInputs').addEventListener('keydown', function (e) {
     const el = e.target;
     if (!el.classList.contains('otp-box')) return;
     const i = parseInt(el.dataset.i);
@@ -118,23 +183,16 @@ document.getElementById('otpInputs').addEventListener('keydown', function(e) {
     }
 });
 
-// OTP submit — verify and enter dashboard
-document.getElementById('otpForm').addEventListener('submit', function(e) {
+/* OTP — verify and enter dashboard */
+document.getElementById('otpForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const entered = Array.from(document.querySelectorAll('.otp-box')).map(b => b.value).join('');
 
     if (entered.length === 6 && entered === currentOtp) {
-        // ✅ Correct — hide login, show dashboard
-        document.getElementById('adminLogin').style.display = 'none';
-        document.getElementById('adminShell').style.display = 'grid';
-
         resetLoginFlow();
-        renderAdminData();
-        // Make sure dashboard tab is active on fresh login
-        switchTab('dash', document.querySelector('.side-link[data-tab="dash"]'));
+        showDashboard(); // ← single call handles everything including initMobileNav
         showToast('Identity verified — welcome back, Goldy');
     } else {
-        // ❌ Wrong code — shake all boxes
         document.querySelectorAll('.otp-box').forEach(b => {
             b.classList.add('shake');
             setTimeout(() => b.classList.remove('shake'), 400);
@@ -159,10 +217,12 @@ function logoutDemo(e) {
 function switchTab(tab, el) {
     document.querySelectorAll('.side-link[data-tab]').forEach(l => l.classList.remove('active'));
     if (el) el.classList.add('active');
+
     document.querySelectorAll('.admin-tab').forEach(t => {
         t.classList.remove('show');
         t.classList.add('hidden-panel');
     });
+
     const target = document.getElementById('tab-' + tab);
     if (target) {
         target.classList.remove('hidden-panel');
@@ -186,12 +246,12 @@ function statusPill(s) {
 
 function animateStatCounts() {
     document.querySelectorAll('.val[data-count]').forEach(el => {
-        const target = parseInt(el.dataset.count) || 0;
-        const prefix = el.dataset.prefix || '';
+        const target   = parseInt(el.dataset.count) || 0;
+        const prefix   = el.dataset.prefix || '';
         const duration = 800;
-        const start = performance.now();
+        const start    = performance.now();
         function tick(now) {
-            const p = Math.min(1, (now - start) / duration);
+            const p     = Math.min(1, (now - start) / duration);
             const eased = 1 - Math.pow(1 - p, 3);
             el.textContent = prefix + Math.round(target * eased).toLocaleString('en-IN');
             if (p < 1) requestAnimationFrame(tick);
@@ -204,19 +264,18 @@ function renderAdminData() {
     const pending   = state.bookings.filter(b => b.status === 'Pending').length;
     const approved  = state.bookings.filter(b => b.status === 'Approved').length;
     const completed = state.bookings.filter(b => b.status === 'Completed').length;
-    const rejected  = state.bookings.filter(b => b.status === 'Rejected').length;
     const income    = completed * 750;
 
-    // Stat cards
+    /* Stat cards */
     document.getElementById('statGrid').innerHTML = `
         <div class="stat-card"><span class="lbl">Pending Bookings</span><div class="val" data-count="${pending}">0</div><div class="delta">Awaiting your review</div></div>
         <div class="stat-card"><span class="lbl">Approved</span><div class="val" data-count="${approved}">0</div><div class="delta">Confirmed upcoming</div></div>
         <div class="stat-card"><span class="lbl">Completed</span><div class="val" data-count="${completed}">0</div><div class="delta">All time (session)</div></div>
-        <div class="stat-card"><span class="lbl">Monthly Income (est.)</span><div class="val" data-count="${income}" data-prefix="₹">₹0</div><div class="delta">Based on completed jobs</div></div>
+        <div class="stat-card"><span class="lbl">Est. Income</span><div class="val" data-count="${income}" data-prefix="₹">₹0</div><div class="delta">Based on completed jobs</div></div>
     `;
     animateStatCounts();
 
-    // Recent bookings (dashboard)
+    /* Recent bookings — dashboard tab */
     document.getElementById('recentApptBody').innerHTML = state.bookings.slice(0, 5).map(b => `
         <tr>
             <td>${b.name || '—'}</td>
@@ -225,9 +284,9 @@ function renderAdminData() {
             <td>${b.type}</td>
             <td>${statusPill(b.status)}</td>
         </tr>
-    `).join('') || `<tr><td colspan="5" class="empty-note">No booking requests yet — new bookings from the site will appear here instantly.</td></tr>`;
+    `).join('') || `<tr><td colspan="5" class="empty-note">No booking requests yet.</td></tr>`;
 
-    // Activity feed
+    /* Activity feed */
     const activity = [
         ...state.bookings.map(b => ({ text: `${b.name} — ${b.service} (${b.type}) marked ${b.status}`, when: b.date })),
         ...state.reviews.filter(r => r.status === 'Pending').map(r => ({ text: `New review from ${r.name} awaiting approval`, when: r.date || '—' }))
@@ -239,7 +298,7 @@ function renderAdminData() {
         </div>
     `).join('') || `<div class="empty-note">No recent activity yet.</div>`;
 
-    // Full appointments table
+    /* Full appointments table */
     document.getElementById('apptBody').innerHTML = state.bookings.map((b, i) => `
         <tr>
             <td>${b.name}</td>
@@ -252,13 +311,13 @@ function renderAdminData() {
                 <div class="row-actions">
                     <button class="mini-btn ok"     onclick="setBookingStatus(${i},'Approved')">Accept</button>
                     <button class="mini-btn danger"  onclick="setBookingStatus(${i},'Rejected')">Reject</button>
-                    <button class="mini-btn"         onclick="setBookingStatus(${i},'Completed')">Complete</button>
+                    <button class="mini-btn"         onclick="setBookingStatus(${i},'Completed')">Done</button>
                 </div>
             </td>
         </tr>
     `).join('') || `<tr><td colspan="7" class="empty-note">No appointments yet.</td></tr>`;
 
-    // Home service tab
+    /* Home service tab */
     const homeReqs = state.bookings.filter(b => b.type === 'Home Service');
     document.getElementById('homeBody').innerHTML = homeReqs.map(b => {
         const idx = state.bookings.indexOf(b);
@@ -279,27 +338,27 @@ function renderAdminData() {
         `;
     }).join('') || `<tr><td colspan="6" class="empty-note">No home service requests yet.</td></tr>`;
 
-    // Gallery
+    /* Gallery */
     document.getElementById('adminGalleryGrid').innerHTML =
         state.gallery.map((g, i) => `
             <div class="mini-img">
-                <img src="${g.img}" alt="${g.title}">
+                <img src="${g.img}" alt="${g.title}" loading="lazy">
                 <span class="del" onclick="removeGalleryItem(${i})">✕</span>
             </div>
         `).join('') +
         `<div class="add-tile" onclick="document.getElementById('galleryUpload').click()">+</div>`;
 
-    // Videos
+    /* Videos */
     document.getElementById('adminVideoGrid').innerHTML =
         state.videos.map((v, i) => `
             <div class="mini-img">
-                <img src="${v.thumb}" alt="${v.title}">
+                <img src="${v.thumb}" alt="${v.title}" loading="lazy">
                 <span class="del" onclick="removeVideoItem(${i})">✕</span>
             </div>
         `).join('') +
         `<div class="add-tile" onclick="document.getElementById('videoUpload').click()">+</div>`;
 
-    // Services
+    /* Services */
     document.getElementById('serviceBody').innerHTML = state.services.map((s, i) => `
         <tr>
             <td>${s.icon} ${s.name}</td>
@@ -313,12 +372,12 @@ function renderAdminData() {
         </tr>
     `).join('');
 
-    // Reviews
+    /* Reviews */
     document.getElementById('reviewBody').innerHTML = state.reviews.map((r, i) => `
         <tr>
             <td>${r.name}</td>
             <td>${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</td>
-            <td style="max-width:280px;">${r.text}</td>
+            <td style="max-width:260px;white-space:normal;">${r.text}</td>
             <td>${statusPill(r.status)}</td>
             <td>
                 <div class="row-actions">
@@ -353,7 +412,7 @@ function removeVideoItem(i) {
 
 function updateServicePrice(i, val) {
     state.services[i].price = parseInt(val) || 0;
-    showToast(`${state.services[i].name} price updated to ₹${state.services[i].price}`);
+    showToast(`${state.services[i].name} updated to ₹${state.services[i].price}`);
 }
 
 function removeService(i) {
@@ -380,7 +439,7 @@ function uploadGalleryImage(e) {
     fileToDataUrl(file, dataUrl => {
         state.gallery.push({ img: dataUrl, cat: 'Trending', title: 'New Upload' });
         renderAdminData();
-        showToast('Photo uploaded — would go live in the Gallery section');
+        showToast('Photo uploaded — now live in Gallery');
     });
     e.target.value = '';
 }
@@ -390,7 +449,7 @@ function uploadVideoThumb(e) {
     fileToDataUrl(file, dataUrl => {
         state.videos.push({ title: 'New Upload', cat: 'Trending', thumb: dataUrl });
         renderAdminData();
-        showToast('Uploaded — would go live in the Video Gallery section');
+        showToast('Video thumbnail uploaded');
     });
     e.target.value = '';
 }
@@ -399,7 +458,7 @@ function uploadHeroImage(e) {
     const file = e.target.files[0]; if (!file) return;
     fileToDataUrl(file, dataUrl => {
         document.getElementById('heroPreview').src = dataUrl;
-        showToast('Hero photo updated (would publish to the live site)');
+        showToast('Hero photo updated');
     });
     e.target.value = '';
 }
@@ -408,7 +467,7 @@ function uploadAboutImage(e) {
     const file = e.target.files[0]; if (!file) return;
     fileToDataUrl(file, dataUrl => {
         document.getElementById('aboutPreview').src = dataUrl;
-        showToast('About photo updated (would publish to the live site)');
+        showToast('About photo updated');
     });
     e.target.value = '';
 }
@@ -416,10 +475,11 @@ function uploadAboutImage(e) {
 /* =========================================================
    SETTINGS FORM
 ========================================================= */
-document.getElementById('settingsForm').addEventListener('submit', function(e) {
+document.getElementById('settingsForm').addEventListener('submit', function (e) {
     e.preventDefault();
-    document.getElementById('settingsSavedNote').textContent = '✓ Published to live site';
-    setTimeout(() => document.getElementById('settingsSavedNote').textContent = '', 3000);
+    const note = document.getElementById('settingsSavedNote');
+    note.textContent = '✓ Published to live site';
+    setTimeout(() => note.textContent = '', 3000);
     showToast('Website settings saved and published');
 });
 
@@ -435,55 +495,6 @@ function showToast(msg) {
 }
 
 /* =========================================================
-   START — boot() enforces login-first, nothing else runs
+   START
 ========================================================= */
 boot();
-/* =========================================================
-   MOBILE SIDEBAR TOGGLE
-   Add this snippet to the top of admin.js (or paste inline
-   in admin.html just before </body>)
-========================================================= */
-
-(function () {
-    function initSidebarToggle() {
-        const sidebar = document.querySelector('.admin-sidebar');
-        if (!sidebar) return;
-
-        // Wrap logo in a flex row so toggle button sits beside it
-        const logo = sidebar.querySelector('.logo');
-        if (!logo || sidebar.querySelector('.sidebar-logo-row')) return;
-
-        const row = document.createElement('div');
-        row.className = 'sidebar-logo-row';
-        sidebar.insertBefore(row, logo);
-        row.appendChild(logo);
-
-        const toggle = document.createElement('button');
-        toggle.className = 'sidebar-toggle';
-        toggle.setAttribute('aria-label', 'Toggle navigation');
-        toggle.innerHTML = '☰ Menu';
-        row.appendChild(toggle);
-
-        toggle.addEventListener('click', function () {
-            sidebar.classList.toggle('nav-open');
-            toggle.innerHTML = sidebar.classList.contains('nav-open') ? '✕ Close' : '☰ Menu';
-        });
-
-        // Close nav when a tab link is tapped
-        sidebar.querySelectorAll('.side-link[data-tab]').forEach(function (link) {
-            link.addEventListener('click', function () {
-                if (window.innerWidth <= 860) {
-                    sidebar.classList.remove('nav-open');
-                    toggle.innerHTML = '☰ Menu';
-                }
-            });
-        });
-    }
-
-    // Run after DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initSidebarToggle);
-    } else {
-        initSidebarToggle();
-    }
-})();
