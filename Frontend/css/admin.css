@@ -749,3 +749,409 @@ tr:hover td {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
 }
+/* Admin responsive for mobile */
+/* =========================================================
+   ADMIN RESPONSIVE — MOBILE-FIRST ADDITIONS
+   Paste these rules at the very bottom of admin.css
+   (or @import this file after admin.css)
+========================================================= */
+
+/* ── 1. ROOT SCROLL FIX ── */
+html, body {
+    overflow-x: hidden;
+}
+
+/* ── 2. ADMIN SHELL — sidebar collapses to top drawer ── */
+@media (max-width: 860px) {
+    .admin-shell {
+        grid-template-columns: 1fr;
+        min-height: 100vh;
+    }
+
+    .admin-sidebar {
+        position: relative;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 16px 16px 12px;
+        overflow: visible;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+    }
+
+    /* Collapsible sidebar nav on mobile */
+    .admin-sidebar .logo {
+        width: 100%;
+        margin-bottom: 0;
+        font-size: 17px;
+        cursor: pointer;
+    }
+
+    /* Hide nav items by default on mobile — show on open */
+    .admin-sidebar .side-section,
+    .admin-sidebar .side-link {
+        display: none;
+    }
+
+    .admin-sidebar.nav-open .side-section,
+    .admin-sidebar.nav-open .side-link {
+        display: flex;
+    }
+
+    /* Hamburger toggle button */
+    .sidebar-toggle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-left: auto;
+        font-size: 11px;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        padding: 8px 14px;
+        cursor: pointer;
+        background: none;
+        font-family: var(--sans);
+        transition: .2s;
+    }
+
+    .sidebar-toggle:hover {
+        border-color: var(--gold);
+        color: var(--gold-bright);
+    }
+
+    .sidebar-logo-row {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .admin-sidebar .side-link {
+        padding: 12px 14px;
+        border-left: none;
+        border-top: 1px solid rgba(255,255,255,.04);
+        margin-bottom: 0;
+        width: 100%;
+    }
+
+    .admin-sidebar .side-link.active {
+        border-left: none;
+        border-left-color: transparent;
+        background: rgba(200,162,77,.06);
+        color: var(--gold-bright);
+    }
+
+    .admin-sidebar .side-link.active::before {
+        display: none;
+    }
+
+    .admin-sidebar .side-section {
+        display: none;
+        margin: 12px 0 4px 14px;
+    }
+
+    .admin-sidebar.nav-open .side-section {
+        display: block;
+    }
+}
+
+/* ── 3. MAIN CONTENT AREA ── */
+@media (max-width: 860px) {
+    .admin-main {
+        padding: 20px 16px;
+        max-height: none;
+        overflow-y: visible;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-main {
+        padding: 16px 12px;
+    }
+}
+
+/* ── 4. TOPBAR ── */
+@media (max-width: 600px) {
+    .admin-topbar {
+        margin-bottom: 22px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .admin-topbar h1 {
+        font-size: 22px;
+    }
+}
+
+/* ── 5. STAT GRID ── */
+@media (max-width: 900px) {
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        margin-bottom: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 18px 14px;
+    }
+
+    .stat-card .val {
+        font-size: 28px;
+    }
+
+    .stat-card span.lbl {
+        font-size: 10px;
+    }
+}
+
+/* ── 6. DASHBOARD GRID ── */
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+/* ── 7. ADMIN PANEL ── */
+@media (max-width: 600px) {
+    .admin-panel {
+        padding: 18px 14px;
+        margin-bottom: 18px;
+    }
+
+    .panel-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .panel-head h3 {
+        font-size: 16px;
+    }
+}
+
+/* ── 8. TABLES — horizontal scroll on mobile ── */
+@media (max-width: 768px) {
+    .admin-panel {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 560px;
+    }
+
+    th, td {
+        padding: 10px 8px;
+        font-size: 12.5px;
+        white-space: nowrap;
+    }
+
+    .row-actions {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .mini-btn {
+        padding: 6px 10px;
+        font-size: 10.5px;
+    }
+}
+
+/* ── 9. GALLERY / VIDEO GRID TILES ── */
+@media (max-width: 600px) {
+    .admin-grid-cards {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 10px;
+    }
+}
+
+@media (max-width: 380px) {
+    .admin-grid-cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+}
+
+/* ── 10. PILL STATUS BADGES ── */
+@media (max-width: 480px) {
+    .pill {
+        font-size: 10px;
+        padding: 4px 9px;
+    }
+}
+
+/* ── 11. SETTINGS — stacked layout ── */
+@media (max-width: 700px) {
+    .settings-nav {
+        gap: 6px;
+    }
+
+    .settings-nav-btn {
+        padding: 8px 11px;
+        font-size: 12px;
+    }
+
+    .settings-shell {
+        gap: 14px;
+    }
+}
+
+@media (max-width: 560px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+        padding: 11px 12px;
+        font-size: 14px; /* prevents iOS zoom on focus */
+    }
+}
+
+/* iOS zoom fix — all inputs 16px minimum */
+@media (max-width: 860px) {
+    .field input,
+    .field select,
+    .field textarea,
+    .inline-edit,
+    .otp-box {
+        font-size: 16px;
+    }
+}
+
+/* ── 12. SUBMIT ROW ── */
+@media (max-width: 500px) {
+    .submit-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .submit-row .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ── 13. LOGIN CARD ── */
+@media (max-width: 480px) {
+    .admin-login {
+        align-items: flex-start;
+        padding: 40px 16px 24px;
+    }
+
+    .login-card {
+        width: 100%;
+        padding: 32px 22px;
+    }
+
+    .login-card .btn {
+        padding: 14px 20px;
+        font-size: 12.5px;
+    }
+}
+
+/* ── 14. OTP INPUTS ── */
+@media (max-width: 400px) {
+    .otp-inputs {
+        gap: 6px;
+    }
+
+    .otp-box {
+        width: 36px;
+        height: 46px;
+        font-size: 20px;
+    }
+}
+
+/* ── 15. MINI-IMG DELETE BUTTON — larger tap target ── */
+@media (max-width: 768px) {
+    .mini-img .del {
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+        top: 4px;
+        right: 4px;
+    }
+}
+
+/* ── 16. INLINE EDIT (price fields in services) ── */
+@media (max-width: 768px) {
+    .inline-edit {
+        width: 70px;
+        font-size: 14px;
+    }
+}
+
+/* ── 17. ACTIVITY FEED ── */
+@media (max-width: 600px) {
+    .activity-item {
+        padding: 10px 0;
+        font-size: 13px;
+    }
+
+    .activity-dot {
+        margin-top: 5px;
+        flex-shrink: 0;
+    }
+}
+
+/* ── 18. TOGGLE / SWITCH ROWS ── */
+@media (max-width: 480px) {
+    .switch-row {
+        font-size: 13px;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .switch-row input[type="checkbox"] {
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+}
+
+/* ── 19. BUTTONS — full-width on very small screens ── */
+@media (max-width: 380px) {
+    .btn {
+        padding: 13px 20px;
+        font-size: 12px;
+    }
+}
+
+/* ── 20. TAB FADE STILL WORKS ON MOBILE ── */
+.admin-tab.show {
+    display: block;
+    animation: tabFade .35s ease;
+}
+
+/* Prevent tab content from overflowing narrow screens */
+.admin-tab {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* ── 21. SAFE AREA INSETS (notched phones) ── */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .admin-sidebar {
+        padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    }
+
+    .admin-main {
+        padding-bottom: calc(24px + env(safe-area-inset-bottom));
+    }
+}

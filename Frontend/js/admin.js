@@ -438,3 +438,52 @@ function showToast(msg) {
    START — boot() enforces login-first, nothing else runs
 ========================================================= */
 boot();
+/* =========================================================
+   MOBILE SIDEBAR TOGGLE
+   Add this snippet to the top of admin.js (or paste inline
+   in admin.html just before </body>)
+========================================================= */
+
+(function () {
+    function initSidebarToggle() {
+        const sidebar = document.querySelector('.admin-sidebar');
+        if (!sidebar) return;
+
+        // Wrap logo in a flex row so toggle button sits beside it
+        const logo = sidebar.querySelector('.logo');
+        if (!logo || sidebar.querySelector('.sidebar-logo-row')) return;
+
+        const row = document.createElement('div');
+        row.className = 'sidebar-logo-row';
+        sidebar.insertBefore(row, logo);
+        row.appendChild(logo);
+
+        const toggle = document.createElement('button');
+        toggle.className = 'sidebar-toggle';
+        toggle.setAttribute('aria-label', 'Toggle navigation');
+        toggle.innerHTML = '☰ Menu';
+        row.appendChild(toggle);
+
+        toggle.addEventListener('click', function () {
+            sidebar.classList.toggle('nav-open');
+            toggle.innerHTML = sidebar.classList.contains('nav-open') ? '✕ Close' : '☰ Menu';
+        });
+
+        // Close nav when a tab link is tapped
+        sidebar.querySelectorAll('.side-link[data-tab]').forEach(function (link) {
+            link.addEventListener('click', function () {
+                if (window.innerWidth <= 860) {
+                    sidebar.classList.remove('nav-open');
+                    toggle.innerHTML = '☰ Menu';
+                }
+            });
+        });
+    }
+
+    // Run after DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSidebarToggle);
+    } else {
+        initSidebarToggle();
+    }
+})();
