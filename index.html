@@ -318,7 +318,7 @@
       </div>
       <div class="foot-bottom">
         <span>© 2026 My Art Gallery. All rights reserved. · <a href="#">Privacy</a> · <a href="#">Terms</a></span>
-        <a class="staff-link" href="index.html" onclick="openAdmin(event)">Staff Login →</a>
+        <a class="staff-link" href="Frontend/admin.html">Staff Login →</a>
       </div>
     </div>
   </footer>
@@ -442,52 +442,29 @@
         <main class="admin-main">
           <!-- DASHBOARD TAB -->
           <div class="admin-tab" id="tab-dash">
-            <div class="admin-topbar">
-              <div>
-                <h1>Dashboard Overview</h1>
-                <div class="sub">Welcome back, Goldy — here's today at a glance.</div>
-              </div>
-            </div>
-            <div class="dash-split">
-              <div class="admin-panel">
-                <div class="panel-head">
-                  <h3>Appointment Status</h3>
-                </div>
-                <div id="statusBars"></div>
-              </div>
-              <div class="admin-panel">
-                <div class="panel-head">
-                  <h3>Recent Activity</h3>
-                </div>
-                <div id="activityFeed" class="activity-feed"></div>
-              </div>
-            </div>
-            <div class="dashboard-grid">
-              <div class="admin-panel">
-                <div class="panel-head">
-                  <h3>Recent Booking Requests</h3>
-                </div>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Customer</th>
-                      <th>Service</th>
-                      <th>Date</th>
-                      <th>Type</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody id="recentApptBody"></tbody>
-                </table>
-              </div>
-              <div class="admin-panel">
-                <div class="panel-head">
-                  <h3>Activity Feed</h3>
-                </div>
-                <div class="activity-list" id="activityFeed"></div>
-              </div>
-            </div>
-          </div>
+  <div class="admin-topbar">
+    <div>
+      <h1>Dashboard Overview</h1>
+      <div class="sub">Welcome back, Goldy — here's today at a glance.</div>
+    </div>
+  </div>
+
+  <div class="stat-grid" id="statGrid"></div>
+
+  <div class="dashboard-grid">
+    <div class="admin-panel">
+      <div class="panel-head"><h3>Recent Booking Requests</h3></div>
+      <table>
+        <thead><tr><th>Customer</th><th>Service</th><th>Date</th><th>Type</th><th>Status</th></tr></thead>
+        <tbody id="recentApptBody"></tbody>
+      </table>
+    </div>
+    <div class="admin-panel">
+      <div class="panel-head"><h3>Activity Feed</h3></div>
+      <div class="activity-list" id="activityFeed"></div>
+    </div>
+  </div>
+</div>
 
           <!-- APPOINTMENTS TAB -->
           <div class="admin-tab hidden-panel" id="tab-appts">

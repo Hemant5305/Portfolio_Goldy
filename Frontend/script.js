@@ -359,21 +359,42 @@ function renderAdminData() {
   `).join('') + `<div class="add-tile" onclick="document.getElementById('videoUpload').click()">+</div>`;
 
     // services
-    document.getElementById('serviceBody').innerHTML = state.services.map((s, i) => `
-    <tr><td>${s.icon} ${s.name}</td>
-    <td>₹<input class="inline-edit" value="${s.price}" onchange="updateServicePrice(${i}, this.value)"></td>
-    <td>${s.dur}</td>
-    <td><div class="row-actions"><button class="mini-btn danger" onclick="removeService(${i})">Delete</button></div></td></tr>
-  `).join('');
+document.getElementById('serviceCards').innerHTML = state.services.map((s, i) => `
+  <div class="content-card">
+    <div class="service-card-top">
+      <span class="service-icon">${s.icon}</span>
+      <button class="mini-btn danger" onclick="removeService(${i})">Delete</button>
+    </div>
+    <div class="content-card-body">
+      <h4>${s.name}</h4>
+      <p>${s.desc}</p>
+      <div class="price-row">
+        <span>₹<input class="inline-edit" value="${s.price}" onchange="updateServicePrice(${i}, this.value)"></span>
+        <span class="subtle">${s.dur}</span>
+      </div>
+    </div>
+  </div>
+`).join('');
+
 
     // reviews
-    document.getElementById('reviewBody').innerHTML = state.reviews.map((r, i) => `
-    <tr><td>${r.name}</td><td>${'★'.repeat(r.rating)}</td><td style="max-width:280px;">${r.text}</td><td>${statusPill(r.status)}</td>
-    <td><div class="row-actions">
-      <button class="mini-btn ok" onclick="setReviewStatus(${i},'Approved')">Approve</button>
-      <button class="mini-btn danger" onclick="setReviewStatus(${i},'Rejected')">Hide</button>
-    </div></td></tr>
-  `).join('');
+document.getElementById('reviewCards').innerHTML = state.reviews.map((r, i) => `
+  <div class="content-card">
+    <div class="content-card-body">
+      <div class="review-top">
+        <div class="avatar">${r.name.split(' ').map(n => n[0]).join('')}</div>
+        <div><b>${r.name}</b><div class="review-meta">${r.date}</div></div>
+      </div>
+      <div class="stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+      <p>${r.text}</p>
+      <span class="chip">${r.status}</span>
+      <div class="card-actions">
+        <button class="mini-btn ok" onclick="setReviewStatus(${i},'Approved')">Approve</button>
+        <button class="mini-btn danger" onclick="setReviewStatus(${i},'Rejected')">Hide</button>
+      </div>
+    </div>
+  </div>
+`).join('');
 }
 
 function setBookingStatus(i, status) { state.bookings[i].status = status; renderAdminData(); showToast(`Booking ${state.bookings[i].id} marked ${status}`); }
