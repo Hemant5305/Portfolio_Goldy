@@ -98,12 +98,12 @@ const state = {
 /* =========================================================
    BOOT — always start on login screen
 ========================================================= */
+/* =========================================================
+   BOOT — login temporarily disabled, go straight to dashboard
+========================================================= */
 function boot() {
-    document.getElementById('adminLogin').style.display = 'flex';
-    document.getElementById('adminShell').style.display = 'none';
-    document.getElementById('loginCardStep1').style.display = 'block';
-    document.getElementById('loginCardStep2').style.display = 'none';
-    document.getElementById('loginForm').reset();
+    document.getElementById('adminLogin').style.display = 'none';
+    showDashboard();
 }
 
 /* =========================================================

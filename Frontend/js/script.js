@@ -227,7 +227,9 @@ function closeAdmin(e) {
     if (e) e.preventDefault();
     document.getElementById('admin-root').classList.remove('show');
     document.getElementById('adminLogin').style.display = 'flex';
-    document.getElementById('adminShell').classList.remove('show');
+    const shell = document.getElementById('adminShell');
+    shell.classList.add('hidden-panel');
+    shell.style.display = 'none';
     resetLoginFlow();
 }
 function resetLoginFlow() {
@@ -268,11 +270,13 @@ document.getElementById('otpForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const entered = Array.from(document.querySelectorAll('.otp-box')).map(b => b.value).join('');
     if (entered.length === 6 && entered === currentOtp) {
-        document.getElementById('adminLogin').style.display = 'none';
-        document.getElementById('adminShell').classList.add('show');
-        resetLoginFlow();
-        renderAdminData();
-        showToast('Identity verified — welcome back, Goldy');
+       document.getElementById('adminLogin').style.display = 'none';
+const shell = document.getElementById('adminShell');
+shell.classList.remove('hidden-panel');
+shell.style.display = 'grid';
+resetLoginFlow();
+renderAdminData();
+showToast('Identity verified — welcome back, Goldy');
     } else {
         document.querySelectorAll('.otp-box').forEach(b => { b.classList.add('shake'); setTimeout(() => b.classList.remove('shake'), 400); });
         showToast('Incorrect code — please try again');

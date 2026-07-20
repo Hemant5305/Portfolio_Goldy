@@ -2127,7 +2127,7 @@ tr:hover td {
 }
 
 .hidden-panel {
-    display: none;
+    display: none !important;
 }
 
 .hidden-panel.show {
